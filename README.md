@@ -22,6 +22,26 @@ Data description can be found [here](https://morphy.wolfganglezius.de/content/2-
 
 See the logic [here](./z_calc.sql).
 
+## How to run
+
+First time setup:
+
+```bash
+make setup
+```
+
+To download the dictionar(y/is):
+
+```bash
+make download
+```
+
+To connect to db and run queries:
+
+```bash
+make connect
+```
+
 ## References
 
 - [Data](https://github.com/languagetool-org/german-pos-dict)

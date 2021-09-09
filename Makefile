@@ -14,15 +14,18 @@ download: ## Downloads data from the source.
 
 setup-db: ## Setup the db.
 	@ docker pull --platform linux/amd64 mysql:8.0
-	@ docker run \
+	@ docker run -d \
+		--name dict \
 		-e MYSQL_USER=admin \
 		-e MYSQL_ROOT_PASSWORD=admin \
 		-e MYSQL_PASSWORD=admin \
 		-e MYSQL_DATABASE=dictionary \
-		-v ./conf.d:etc/mysql/conf.d \
 		-v $(DIR_DATA):/docker-entrypoint-initdb.d \
 		-it mysql:8.0
 
 setup: download setup-db ## Setups the db and fills with downloaded data dump
+
+connect: ## Connect to the db from inside the container.
+	@ docker exec -it dict /bin/bash
 
 .DEFAULT_GOAL := help
